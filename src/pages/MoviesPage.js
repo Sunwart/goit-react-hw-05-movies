@@ -25,7 +25,8 @@ export default function MoviesPage() {
   }, [location.search]);
 
   const handleSearchFormSubmit = newQuery => {
-    if (newQuery !== location.search) {
+    const temp = [...searchParams];
+    if (newQuery !== temp[2]) {
       setMovies([]);
       setSearchParams({ query: newQuery });
     }
