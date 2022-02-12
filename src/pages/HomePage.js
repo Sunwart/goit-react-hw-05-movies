@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { getTrendingMovies } from 'services/API-service';
 import Movies from 'components/Movies.js/Movies';
 
-export const HomePage = () => {
+export default function HomePage() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export const HomePage = () => {
 
   return (
     <main>
-      <Movies movies={movies} title="Trending today" />
+      <Movies movies={movies} title="Trending today:" />
     </main>
   );
-};
+}

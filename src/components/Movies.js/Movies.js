@@ -1,16 +1,51 @@
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import { ReactComponent as NotFound } from '../../icons/not-found.svg';
+
+import {
+  Container,
+  Title,
+  MoviesList,
+  Movie,
+  MoviePoster,
+  MovieLink,
+} from './Movies.styled';
 
 export default function Movies({ movies, title }) {
   return (
-    <div>
-      <h1>{title}</h1>
-      <ul>
-        {movies.map(movie => (
-          <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-          </li>
+    <Container>
+      <Title>{title}</Title>
+      <MoviesList>
+        {movies.map(({ id, title, poster_path, release_date }) => (
+          <Movie key={id}>
+            <MovieLink to={`/movies/${id}`}>
+              <p>
+                {title} ({release_date.slice(0, 4)})
+              </p>
+              {poster_path ? (
+                <MoviePoster
+                  src={`https://www.themoviedb.org/t/p/w500/${poster_path}`}
+                  alt={title}
+                />
+              ) : (
+                <NotFound width={280} />
+              )}
+            </MovieLink>
+          </Movie>
         ))}
-      </ul>
-    </div>
+      </MoviesList>
+    </Container>
   );
 }
+
+Movie.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      poster_path: PropTypes.string.isRequired,
+      release_date: PropTypes.string.isRequired,
+    }).isRequired
+  ),
+  title: PropTypes.string,
+};

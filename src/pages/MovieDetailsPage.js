@@ -1,20 +1,25 @@
-import { useParams, NavLink, Outlet } from 'react-router-dom';
+import { useParams, Outlet } from 'react-router-dom';
+import SingleMovie from 'components/SingleMovie/SingleMovie';
+import { Container, Title, LinksList, AddInfoLink } from './MoviesPage.styled';
 
-export const MovieDetailsPage = () => {
+export default function MovieDetailsPage() {
   const { movieId } = useParams();
 
   return (
     <>
-      <p>Movie</p>
-      <ul>
-        <li>
-          <NavLink to={`/movies/${movieId}/cast`}>Cast</NavLink>
-        </li>
-        <li>
-          <NavLink to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
-        </li>
-      </ul>
+      <SingleMovie movieID={movieId} />
+      <Container>
+        <Title>Additional information:</Title>
+        <LinksList>
+          <li>
+            <AddInfoLink to={`/movies/${movieId}/cast`}>Cast</AddInfoLink>
+          </li>
+          <li>
+            <AddInfoLink to={`/movies/${movieId}/reviews`}>Reviews</AddInfoLink>
+          </li>
+        </LinksList>
+      </Container>
       <Outlet />
     </>
   );
-};
+}
