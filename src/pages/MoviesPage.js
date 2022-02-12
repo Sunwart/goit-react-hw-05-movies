@@ -22,10 +22,9 @@ export default function MoviesPage() {
         }
       });
     }
-  }, [location.search]);
+  }, [location.search, searchParams]);
 
   const handleSearchFormSubmit = newQuery => {
-    const temp = [...searchParams];
     if (newQuery !== location.search) {
       setMovies([]);
       setSearchParams({ query: newQuery });
