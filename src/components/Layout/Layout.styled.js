@@ -22,7 +22,6 @@ export const MenuLink = styled(NavLink)`
   text-transform: uppercase;
   transition: color 300ms linear;
   padding: 16px;
-  /* cursor: pointer; */
 
   :hover {
     color: #3d85c6;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-
-import { NavLink } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
+import { NavLink, Link } from 'react-router-dom';
 
 export const Container = styled.div`
   display: flex;
@@ -36,4 +36,18 @@ export const AddInfoLink = styled(NavLink)`
 
 export const Title = styled.h2`
   margin: 10px 16px 8px 16px;
+`;
+
+export const BackLink = styled(Link)`
+  text-decoration: none;
+  text-transform: uppercase;
+  display: flex;
+  margin: 16px 0 0 48px;
+  color: #3d85c6;
+`;
+
+export const ArrowIcon = styled(FaArrowLeft)`
+  fill: #3d85c6;
+  margin-right: 8px;
+  display: inline-block;
 `;

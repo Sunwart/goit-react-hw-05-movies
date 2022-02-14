@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import { getTrendingMovies } from 'services/API-service';
 import Movies from 'components/Movies.js/Movies';
 

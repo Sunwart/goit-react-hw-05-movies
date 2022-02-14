@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import PropTypes from 'prop-types';
 import { getMovieByID } from 'services/API-service';
 import { Container, PosterImg } from './SingleMovie.styled';
@@ -9,20 +10,19 @@ export default function SingleMovie({ movieID }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getMovieByID(movieID).then(res => {
-      setMovie(res.data);
-      setLoading(false);
-    });
+    getMovieByID(movieID)
+      .then(res => {
+        setMovie(res.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        setLoading(false);
+        setMovie({});
+      });
   }, [movieID]);
 
-  const {
-    poster_path,
-    title,
-    release_date,
-    vote_average = 0,
-    overview,
-    genres,
-  } = movie;
+  const { poster_path, title, release_date, vote_average, overview, genres } =
+    movie;
 
   return (
     <Container>
@@ -39,12 +39,12 @@ export default function SingleMovie({ movieID }) {
             <NotFound width={280} />
           )}
           <div>
-            {title && (
+            {title && release_date && (
               <h1>
                 {title} ({release_date.slice(0, 4)})
               </h1>
             )}
-            <p>User score: {vote_average * 10}%</p>
+            {vote_average && <p>User score: {vote_average * 10}%</p>}
             {overview && (
               <>
                 <h3>Overview</h3>

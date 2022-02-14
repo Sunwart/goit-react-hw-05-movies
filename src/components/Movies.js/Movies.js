@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-
+import { useLocation } from 'react-router-dom';
 import { ReactComponent as NotFound } from '../../icons/not-found.svg';
 
 import {
@@ -12,13 +12,14 @@ import {
 } from './Movies.styled';
 
 export default function Movies({ movies, title }) {
+  const location = useLocation();
   return (
     <Container>
       <Title>{title}</Title>
       <MoviesList>
         {movies.map(({ id, title, poster_path, release_date }) => (
           <Movie key={id}>
-            <MovieLink to={`/movies/${id}`}>
+            <MovieLink to={`/movies/${id}`} state={{ from: location }}>
               <p>
                 {title} ({release_date.slice(0, 4)})
               </p>

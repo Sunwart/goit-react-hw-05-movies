@@ -25,9 +25,11 @@ export default function MoviesPage() {
   }, [location.search, searchParams]);
 
   const handleSearchFormSubmit = newQuery => {
-    if (newQuery !== location.search) {
+    if (newQuery !== location.search.slice(7)) {
       setMovies([]);
       setSearchParams({ query: newQuery });
+    } else {
+      return;
     }
   };
 
