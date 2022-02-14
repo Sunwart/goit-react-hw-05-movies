@@ -28,10 +28,20 @@ export default function MovieDetailsPage() {
         <Title>Additional information:</Title>
         <LinksList>
           <li>
-            <AddInfoLink to={`/movies/${movieId}/cast`}>Cast</AddInfoLink>
+            <AddInfoLink
+              to={`/movies/${movieId}/cast`}
+              state={{ from: location?.state?.from ?? '/' }}
+            >
+              Cast
+            </AddInfoLink>
           </li>
           <li>
-            <AddInfoLink to={`/movies/${movieId}/reviews`}>Reviews</AddInfoLink>
+            <AddInfoLink
+              to={`/movies/${movieId}/reviews`}
+              state={{ from: location?.state?.from ?? '/' }}
+            >
+              Reviews
+            </AddInfoLink>
           </li>
         </LinksList>
       </Container>
